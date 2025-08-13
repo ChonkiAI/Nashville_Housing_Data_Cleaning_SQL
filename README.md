@@ -24,6 +24,11 @@ The [dataset](https://github.com/ChonkiAI/Nashville_Housing_Data_Cleaning_SQL/bl
 
 ### 1️⃣ Standardizing Date Formats
 **Objective:** Ensure all date values are in a consistent `YYYY-MM-DD` format.
+Example Case:
+
+SaleDate (Original)	SaleDateConverted
+05-12-2014 00:00:00	2014-05-12
+8/15/2013 00:00	2013-08-15
 ```
 ALTER TABLE NashvilleHousing
 ADD SaleDateConverted DATE;
@@ -84,6 +89,18 @@ WHERE row_num > 1;
 ALTER TABLE PortfolioProject.dbo.NashvilleHousing
 DROP COLUMN OwnerAddress, TaxDistrict, PropertyAddress, SaleDate;
 ```
+---
+## 📊 Query Effects: Before vs After
+
+| Step | Transformation | Before | After |
+|------|----------------|--------|-------|
+| **1. Standardizing Date Format** | Convert `SaleDate` to `YYYY-MM-DD` | `05-12-2014 00:00:00` | `2014-05-12` |
+| **2. Populating Missing Property Addresses** | Fill null `PropertyAddress` using matching `ParcelID` | `NULL` | `742 Evergreen Terrace` |
+| **3. Splitting Address into Components** | Break into `PropertySplitAddress`, `PropertySplitCity`, `OwnerSplitAddress`, `OwnerSplitCity`, `OwnerSplitState` | `123 Main St, Nashville` / `456 Oak Rd, Franklin, TN` | `123 Main St` / `Nashville` / `456 Oak Rd` / `Franklin` / `TN` |
+| **4. Standardizing "Sold as Vacant" Values** | Replace `Y` / `N` with `Yes` / `No` | `Y` | `Yes` |
+| **5. Removing Duplicate Records** | Remove repeated rows with same key fields | Two identical `ParcelID 123456` records | Single `ParcelID 123456` record |
+| **6. Dropping Unused Columns** | Remove `OwnerAddress`, `TaxDistrict`, `PropertyAddress`, `SaleDate` | Table had unnecessary columns | Table contains only cleaned, relevant columns |
+
 ---
 ### 📈 Key Outcomes
 **1: Fully cleaned dataset ready for analysis.**
