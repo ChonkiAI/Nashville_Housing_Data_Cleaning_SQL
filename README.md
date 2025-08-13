@@ -15,8 +15,8 @@ All transformations were performed directly in **Microsoft SQL Server** using ef
 
 ---
 
-## 🗂 Dataset
-The dataset contains Nashville real estate transaction records with details like property addresses, owner information, sale prices, and more.
+## 🗂 [Dataset](https://github.com/ChonkiAI/Nashville_Housing_Data_Cleaning_SQL/blob/main/Nashville%20Housing%20Data.xlsx)
+The [dataset](https://github.com/ChonkiAI/Nashville_Housing_Data_Cleaning_SQL/blob/main/Nashville%20Housing%20Data.xlsx) contains Nashville real estate transaction records with details like property addresses, owner information, sale prices, and more.
 
 ---
 
